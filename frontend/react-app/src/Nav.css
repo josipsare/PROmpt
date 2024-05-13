@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  display: block;
+}
+.demo-logo-vertical {
+  width: 5%;
+}
+
+.grid-container {
+  color: white;
+  border-radius: 20px;
+  padding: 15px; /* Optional: Add padding for better appearance */
+  margin: 2px;
+  height: 500px;
+}
+
+.grid-container-center-right {
+  -webkit-box-shadow: inset 0px 0px 64px -8px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: inset 0px 0px 64px -8px rgba(0, 0, 0, 0.47);
+  box-shadow: inset 0px 0px 64px -8px rgba(0, 0, 0, 0.47);
+  border: 2px solid #001a293d; /* Change border color to green */
+  color: white;
+  border-radius: 20px;
+  padding: 15px; /* Optional: Add padding for better appearance */
+  margin: 2px;
+  height: 500px;
+  max-height: 500px; /* Set a fixed maximum height */
+  overflow-y: auto; /* Add vertical scrollbar when content exceeds maximum height */
+}
+
+/* Define the styles for the scrollbar track */
+.grid-container-center-right::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+  height: 50px;
+}
+
+.grid-container-center-right::-webkit-scrollbar-track {
+  background: transparent; /* Color of the scrollbar track */
+}
+
+/* Define the styles for the scrollbar thumb (the draggable part) */
+.grid-container-center-right::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+/* Define the styles for the scrollbar thumb when hovered */
+.grid-container-center-right::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar thumb on hover */
+}
+.logoContainer {
+  width: 100%; /* Set the width of the logo container to 100% */
+}
+
+.logoImage {
+  width: 100%; /* Set the width of the logo image to 100% */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.customswitch {
+  background-color: #4dae1d; /* Green color when checked */
+}
+
+.spinner {
+  background-color: #243647;
+  color: rgb(197, 214, 255);
+}
+
+.ant-form-item-label {
+  color: white;
+}
+.ant-card {
+  width: 350%;
+}

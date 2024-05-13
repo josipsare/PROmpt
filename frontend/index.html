@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + React</title>
+</head>
+
+<body>
+  <form id="myForm">
+    <label for="prompt">Prompt:</label><br>
+    <textarea id="prompt" name="prompt"></textarea><br><br>
+
+    <p>What type of prompt is it:</p>
+    <select id="typeOfPrompt" name="typeOfPrompt">
+      <option disabled selected value="">Select a type</option>
+      <option value="code">Code related</option>
+      <option value="general">General knowledge</option>
+      <option value="summarize">Summarize text</option>
+    </select><br><br>
+
+    <p>Level of detail:</p>
+    <select id="detail" name="detail">
+      <option disabled selected value="">Select a level of detail</option>
+      <option value="no_extra_detail">No extra detail</option>
+      <option value="normal_detail">Normal detail</option>
+      <option value="extra_detail">Extra amount of detail</option>
+    </select><br><br>
+
+
+    <div id="additionalElements" style="display: none;">
+      <p>What help do you need?</p>
+      <select id="additionalInputCode" name="additionalInputCode">
+        <option disabled selected value="">Select a type</option>
+        <option value="debug">Debug</option>
+        <option value="translate">Translate into another language</option>
+        <option value="explain">Explain</option>
+        <option value="write">Write</option>
+        <option value="security">Security</option>
+        <option value="fullstackdev">Full-Stack Development</option>
+        <option value="uxui">UX/UI Develompent</option>
+        <option value="frontenddev">Front-End Develompent</option>
+      </select><br><br>
+    </div>
+
+    <div id="translateExtra" style="display: none;">
+      <!-- Extra div to show if "Translate into another language" is selected -->
+      <p>Enter the target language:</p>
+      <select id="targetLanguage" name="targetLanguage">
+        <option disabled selected value="">Select a type</option>
+        <option value="python">Python</option>
+        <option value="c">C</option>
+        <option value="java">Java</option>
+        <option value="javascript">JavaScript</option>
+      </select>
+      <br>
+      <br>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+  <div id="output">
+    <!-- Display form data here -->
+  </div>
+  <div id="root"></div>
+  <script src="script.js" type="module"></script>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>
