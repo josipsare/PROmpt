@@ -64,7 +64,7 @@ const App = () => {
    const handleResponseChange = (value) => {
       setResponse(value)
    };
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   return (
      <Router>
