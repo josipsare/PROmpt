@@ -20,7 +20,7 @@ public class UserPrompt {
     @Column(name="id", insertable = false, updatable = false, nullable = false)
     private Long Id;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     @NonNull
     private String prompt;
 

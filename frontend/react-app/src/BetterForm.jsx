@@ -20,6 +20,7 @@ function BetterForm({ onEnhancedPromptChange, onReponseChange, onLoadingChange, 
   const [temprature, setTemperature] = useState(0);
   const [takeABreath,setTakeABreath] = useState(false)
   const [sliderValue, setSliderValue] = useState(5); // State to store slider value
+  const [error, setError] = useState('');
 
   const handleTakeABreathChange = (e) => {
     setTakeABreath(e.target.checked);
@@ -27,6 +28,7 @@ function BetterForm({ onEnhancedPromptChange, onReponseChange, onLoadingChange, 
 
   const handleTypeOfPromptChange = (value) => {
     setTypeOfPrompt(value);
+    setError('');
   };
 
   const handleTemperatureChange = (value) => {
@@ -73,6 +75,7 @@ function BetterForm({ onEnhancedPromptChange, onReponseChange, onLoadingChange, 
 
   const handleAdditionalSelect = (value) => {
     console.log("u additionalu sam")
+    setError('');
     console.log(value)
     setAdditional(value);
     setTypeExtras(prevState => ({
@@ -83,6 +86,7 @@ function BetterForm({ onEnhancedPromptChange, onReponseChange, onLoadingChange, 
 
   function handleDetailSelect(value) {
     console.log("u detailu sam")
+    setError('');
     console.log(value)
     setDetail(value);
     setTypeExtras(prevState => ({
@@ -93,6 +97,19 @@ function BetterForm({ onEnhancedPromptChange, onReponseChange, onLoadingChange, 
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    // Validate type of prompt
+    if (!typeOfPrompt) {
+      setError('Please select a type of prompt');
+      return;
+    }
+    if (!detail) {
+      return;
+    }
+    if (!additional) {
+      return;
+    }
+
     console.log("u handle Sumbit")
     console.log(typeExtras)
     onLoadingChange(true)
@@ -145,15 +162,15 @@ function BetterForm({ onEnhancedPromptChange, onReponseChange, onLoadingChange, 
         <br></br>
 
         <label htmlFor="prompt">Prompt:</label><br />
-        <TextArea id="prompt" name="prompt" style={{ width:'100%'}} value={prompt} onChange={(e) => setPrompt(e.target.value)} /><br /><br />
+        <TextArea required id="prompt" name="prompt" style={{ width:'100%'}} value={prompt} onChange={(e) => setPrompt(e.target.value)} /><br /><br />
 
         <br />
         <label>Type of prompt</label><br />
         <Flex vertical gap="middle">
-          <Radio.Group defaultValue="" buttonStyle="solid">
+          <Radio.Group required defaultValue="" buttonStyle="solid">
             <Radio.Button onClick={() => handleTypeOfPromptChange('code')} value="code" style={{ width: 'auto', textAlign: 'center' }}>Code</Radio.Button>
             <Radio.Button onClick={() => handleTypeOfPromptChange('teaching')} value="teaching" style={{ width: 'auto',textAlign:'center' }}>Teaching</Radio.Button>
-            <Radio.Button onClick={() => handleTypeOfPromptChange('rephrasing')} value="writing" style={{ width: 'auto',textAlign:'center' }}>Rephrasis</Radio.Button>
+            <Radio.Button onClick={() => handleTypeOfPromptChange('rephrasing')} value="rephrasing" style={{ width: 'auto',textAlign:'center' }}>Rephrasis</Radio.Button>
             <Radio.Button onClick={() => handleTypeOfPromptChange('writing')} value="writing" style={{ width: 'auto', textAlign: 'center' }}>Writing</Radio.Button>
           </Radio.Group>
         </Flex>
@@ -162,7 +179,7 @@ function BetterForm({ onEnhancedPromptChange, onReponseChange, onLoadingChange, 
         <br />
         <label>Level of detail:</label>
         <Flex vertical gap="middle">
-        <Radio.Group defaultValue="normal" buttonStyle="solid">
+        <Radio.Group required defaultValue="normal" buttonStyle="solid">
           <Radio.Button onClick={() => handleDetailSelect("no_extra_detail")} value="no_extra_detail">No detail</Radio.Button>
           <Radio.Button onClick={() => handleDetailSelect("normal_detail")} value="normal_detail">Normal detail</Radio.Button>
           <Radio.Button onClick={() => handleDetailSelect("extra_detail")} value="extra_detail">Extra detail</Radio.Button>

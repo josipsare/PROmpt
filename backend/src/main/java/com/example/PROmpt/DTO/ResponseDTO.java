@@ -11,9 +11,7 @@ public class ResponseDTO {
 
     private String text;
 
-
     private Double grade;
-
 
     private Long llmID;
 

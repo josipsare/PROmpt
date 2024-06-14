@@ -36,7 +36,7 @@ public class Response {
     private Integer grade;
 
     @NonNull
-    @ManyToOne(optional = false) //jedna prijava ima samo jednog korisnika a jedan korisnik moze imati vise prijava
+    @ManyToOne(optional = false)
     @JoinColumn(name = "llmId")
     private LLM llm;
 

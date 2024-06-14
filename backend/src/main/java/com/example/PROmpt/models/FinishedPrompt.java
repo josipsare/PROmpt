@@ -22,7 +22,7 @@ public class FinishedPrompt {
 
     @Column
     @NonNull
-    private int length;
+    private Integer length;
 
     @Column(columnDefinition = "TEXT")
     @NonNull

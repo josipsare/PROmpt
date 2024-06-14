@@ -45,7 +45,6 @@ public class ChatController extends AplicationController {
         String prompt= finishedPrompt.getText();
 
         System.out.println(prompt);
-        // create a request
 
         if(llmID==1){
             model="gpt-3.5-turbo";
@@ -83,8 +82,6 @@ public class ChatController extends AplicationController {
             Response responseToBeSaved = new Response(text,text.length(),modelUsed,finishedPrompt.getUserPrompt(),finishedPrompt,promptTokens,responseTokens);
             responseToReturn= responseRepo.save(responseToBeSaved);
             List<Response> listaResponsea = modelUsed.getResponses();
-
-            //todo provjeriti jeli ovaj dio potreban
             listaResponsea.add(responseToReturn);
             modelUsed.setResponses(listaResponsea);
             llmRepo.save(modelUsed);

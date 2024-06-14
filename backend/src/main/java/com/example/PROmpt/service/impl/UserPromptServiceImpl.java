@@ -62,7 +62,6 @@ public class UserPromptServiceImpl implements UserPromptService {
     @Override
     public ResponseDTOR enhance(UserPromptDTO userPromptDTO, String llm, User currentUser) {
         UserPrompt userPrompt = (UserPrompt) save(userPromptDTO, currentUser);
-        System.out.println(userPrompt.getType());
         TemplatePrompt templatePrompt=new TemplatePrompt(new HashSet<>(),"error");
         switch (userPrompt.getType()){
             case "code":
@@ -81,7 +80,6 @@ public class UserPromptServiceImpl implements UserPromptService {
                 System.out.println("Invalid type of prompt");
         }
 
-
         if (userPrompt.getTakeABreath()){
             templatePrompt.setPrompt(templatePrompt.getPrompt()+"<br>##############################<br>");
             templatePrompt.setPrompt(templatePrompt.getPrompt()+"Take a deep breath and think step-by-step");
@@ -93,7 +91,6 @@ public class UserPromptServiceImpl implements UserPromptService {
         }else if (llm.equals("LLama-13b")){
             llmID= 2L;
         }
-
 
         Set<Template> templatesUsed = templatePrompt.getTemplates();
         String prompt = templatePrompt.getPrompt();
@@ -325,22 +322,14 @@ public class UserPromptServiceImpl implements UserPromptService {
         ObjectMapper objectMapper = new ObjectMapper();
         Set<Template> templatesUsed = new HashSet<>();
         try {
-            // Parse the JSON string into a Map
             Map<String, String> requestData = objectMapper.readValue(typeExtrasString, new TypeReference<Map<String,String>>() {});
-
-            // Access the fields
             String detail = requestData.get("detail");
             String additional = requestData.get("additional");
             String targetLanguage = requestData.get("targetLanguage");
-            System.out.println("Detail: "+detail);
-            System.out.println("Additional: "+additional);
-            System.out.println("TargetLanguage: "+targetLanguage);
-
             Template template;
             String filler="";
             String typeExtra="";
             String typeExtraLanguage="";
-
             typeExtra = switch (additional) {
                 case "translate" -> {
                     typeExtraLanguage = switch (targetLanguage) {
@@ -376,7 +365,6 @@ public class UserPromptServiceImpl implements UserPromptService {
                 filler += template.getFiller();
                 templatesUsed.add(template);
             }
-
             switch (detail) {
                 case "no_extra_detail":
                 case "normal_detail":
@@ -396,10 +384,10 @@ public class UserPromptServiceImpl implements UserPromptService {
             prompt= filler+prompt;
             TemplatePrompt templatePrompt = new TemplatePrompt(templatesUsed,prompt);
 
-            return templatePrompt; // Return a success response
+            return templatePrompt;
         } catch (IOException e) {
             e.printStackTrace();
-            return new TemplatePrompt(new HashSet<>(), "error"); // Return a bad request response if parsing fails
+            return new TemplatePrompt(new HashSet<>(), "error");
         }
     }
     //
